@@ -1,5 +1,6 @@
 "use strict";
 
+const User = require('../../models/User');
 const UserStorage = require('../../models/UserStroage');
 
 const users = {
@@ -18,10 +19,14 @@ const output = {
 
 const process = {
     login: (req, res) => {
-        const id = req.body.id;
-        const pw = req.body.pw;
+        const user = new User(req.body);
+        const response = user.login();
+        return res.json(response)
 
-        console.log(UserStorage.getUsers());
+        // const id = req.body.id;
+        // const pw = req.body.pw;
+
+        // const users = UserStorage.getUsers("id", "pw");
 
         // const response = {};
         // if(users.id.includes(id)){
